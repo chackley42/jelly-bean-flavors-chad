@@ -1,1 +1,62 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
+
+
+
+.input-modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 300px;
+}
+
+div[mat-dialog-content]{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+div[mat-dialog-actions]{
+    display: flex;
+    justify-content: center;
+}
+
+div[mat-dialog-actions] > button {
+    margin: 10px;
+}
+.jelly-bean-flavor {
+    font-family: "Lucida Console", Monaco, monospace;
+    font-size: small;
+}
+
+.edit-delete-space {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.jelly-bean-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjust the minmax value as needed */
+    gap: 20px; /* Space between grid items */
+    padding: 20px; /* Padding around the grid */
+    width: 100%;
+    /* display: flex; */
+    box-sizing: border-box;
+  }
+
+  .jelly-bean-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border: 0.5px solid #ccc; /* Optional: Add a border around each item */
+    padding: 5px; /* Padding inside each item */
+    border-radius: 8px; /* Optional: Add rounded corners */
+    background-color: #e8e7fa; /* Optional: Add a background color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a shadow beneath the item */
+  }

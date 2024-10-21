@@ -1,0 +1,20 @@
+/* jelly-bean-list.component.css */
+.jelly-bean-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjust the minmax value as needed */
+    gap: 20px; /* Space between grid items */
+    padding: 20px; /* Padding around the grid */
+    width: 100%;
+    display: flex;
+  }
+  
+  .jelly-bean-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border: 1px solid #ccc; /* Optional: Add a border around each item */
+    padding: 10px; /* Padding inside each item */
+    border-radius: 8px; /* Optional: Add rounded corners */
+    background-color: #f9f9f9; /* Optional: Add a background color */
+  }

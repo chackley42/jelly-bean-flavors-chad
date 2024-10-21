@@ -1,0 +1,10 @@
+
+
+.top-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20%;
+    height: 33.33%; /* One third of the viewport height */
+    width: 100%;
+  }
