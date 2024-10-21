@@ -49,26 +49,28 @@ import { MatOption } from '@angular/material/core';
   imports: [MatFormFieldModule, MatInputModule, CommonModule, FormsModule, MatIcon, MatButtonModule, ColorPickerModule, MatOption],
 })
 export class FlavorDialogComponent {
-  flavor: string = '';
-  color: string = '';
+  flavor: string;
+  color: string;
 
   constructor(
     public dialogRef: MatDialogRef<FlavorDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    private jellyBeanService: JellyBeanService 
-  ) {}
+    @Inject(MAT_DIALOG_DATA) public data: JellyBean
+  ) {
+    // Initialize the flavor and color with the data passed to the dialog
+    this.flavor = data?.flavor || '';
+    this.color = data?.color || '';
+  }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
   onSave(): void {
-    const newJellyBean: JellyBean = {
-      id: Date.now(), // Generate a unique ID
+    const editedJellyBean: JellyBean = {
+      id: this.data?.id || Date.now(), // Use the existing ID
       flavor: this.flavor,
       color: this.color,
     };
-    this.jellyBeanService.addJellyBean(newJellyBean); // Save the new jellybean
-    this.dialogRef.close(newJellyBean); // Close the dialog and pass the new jellybean
+    this.dialogRef.close(editedJellyBean); // Close the dialog and pass the edited jellybean
   }
 }

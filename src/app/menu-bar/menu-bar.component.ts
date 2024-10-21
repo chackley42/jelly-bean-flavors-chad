@@ -5,50 +5,50 @@ import { MatIcon, MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import {MatButtonModule} from '@angular/material/button';
 import { faker } from '@faker-js/faker';
-import { JellyBeanService } from '../jelly-bean-service/jelly-bean.service';
-import { JellyBean } from '../models/jelly-bean-model';
+import { JellyBeanService } from '../jelly-bean-service/jelly-bean.service'; // Adjust the path as needed
+import { JellyBean } from '../models/jelly-bean-model'; // Adjust the path as needed
 
 @Component({
   selector: 'menu-bar',
   templateUrl: './menu-bar.component.html',
+  styleUrls: ['./menu-bar.component.css'],
   standalone: true,
   imports: [MatIcon, MatButtonModule],
 })
 export class MenuBarComponent {
+  jellyBeans: JellyBean[] = [];
+
   constructor(
     public dialog: MatDialog,
     private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer,
-    private jellyBeanService: JellyBeanService 
+    private jellyBeanService: JellyBeanService // Inject the service
   ) {
     this.matIconRegistry.addSvgIcon(
       'byu',
-      this.domSanitizer.bypassSecurityTrustResourceUrl('assets/cosmo-byu-royal-svg')
+      this.domSanitizer.bypassSecurityTrustResourceUrl('assets/byu.svg')
     );
+    this.loadJellyBeans();
   }
 
   openAddFlavorDialog(): void {
     const dialogRef = this.dialog.open(FlavorDialogComponent, {
       width: '300px',
-      data: null, 
+      data: null, // No data for adding a new jellybean
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.saveFlavorToLocalStorage(result);
+        this.jellyBeanService.addJellyBean(result); // Add the new jelly bean
+        this.loadJellyBeans(); // Reload jelly beans after adding a new one
       }
     });
-  }
-
-  //create a deleteAllFunction that deletes all the flavors
-  deleteAll(): void {
-    this.jellyBeanService.deleteAllJellyBeans();
   }
 
   getRandomColor(): string {
     const colorRanges = ['red', 'blue', 'green', 'yellow', 'purple', 'pink', 'orange', 'white'];
     const selectedRange = colorRanges[Math.floor(Math.random() * colorRanges.length)];
-  
+
     let color: string;
     switch (selectedRange) {
       case 'red':
@@ -78,7 +78,7 @@ export class MenuBarComponent {
       default:
         color = faker.internet.color(); // Fallback to faker's color if something goes wrong
     }
-  
+
     return color;
   }
 
@@ -112,11 +112,29 @@ export class MenuBarComponent {
       color: randomColor,
     };
     this.jellyBeanService.addJellyBean(newJellyBean);
+    this.loadJellyBeans(); // Reload jelly beans after adding a new one
+  }
+
+  deleteAll(): void {
+    this.jellyBeanService.deleteAllJellyBeans()
   }
 
   private saveFlavorToLocalStorage(flavor: string): void {
     let flavors = JSON.parse(localStorage.getItem('jellybeanFlavors') || '[]');
     flavors.push(flavor);
     localStorage.setItem('jellybeanFlavors', JSON.stringify(flavors));
+    this.loadJellyBeans(); // Reload jelly beans after saving a new one
+  }
+
+  private loadJellyBeans(): void {
+    this.jellyBeans = JSON.parse(localStorage.getItem('jellybeanFlavors') || '[]');
+  }
+
+  onEditJellyBean(editedJellyBean: JellyBean): void {
+    const index = this.jellyBeans.findIndex(jb => jb.id === editedJellyBean.id);
+    if (index !== -1) {
+      this.jellyBeans[index] = editedJellyBean;
+      localStorage.setItem('jellybeanFlavors', JSON.stringify(this.jellyBeans));
+    }
   }
 }

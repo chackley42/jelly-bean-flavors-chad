@@ -18,6 +18,7 @@ export class JellyBeanService {
   }
 
   addJellyBean(jellyBean: JellyBean): void {
+    //push to the end of the array
     this.jellyBeans.push(jellyBean);
     this.saveJellyBeansToLocalStorage();
   }
@@ -27,6 +28,17 @@ export class JellyBeanService {
     this.saveJellyBeansToLocalStorage();
   }
   
+  updateJellyBean(updatedJellyBean: JellyBean): void {
+    const index = this.jellyBeans.findIndex(jb => jb.id === updatedJellyBean.id);
+    if (index !== -1) {
+      this.jellyBeans[index] = updatedJellyBean;
+      this.saveJellyBeans();
+    }
+  }
+
+  private saveJellyBeans(): void {
+    localStorage.setItem('jellybeanFlavors', JSON.stringify(this.jellyBeans));
+  }
 
   deleteJellyBean(index: number): void {
     this.jellyBeans.splice(index, 1);
