@@ -18,7 +18,6 @@ export class JellyBeanService {
   }
 
   addJellyBean(jellyBean: JellyBean): void {
-    //push to the end of the array
     this.jellyBeans.push(jellyBean);
     this.saveJellyBeansToLocalStorage();
   }

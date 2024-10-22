@@ -5,8 +5,8 @@ import { MatIcon, MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import {MatButtonModule} from '@angular/material/button';
 import { faker } from '@faker-js/faker';
-import { JellyBeanService } from '../jelly-bean-service/jelly-bean.service'; // Adjust the path as needed
-import { JellyBean } from '../models/jelly-bean-model'; // Adjust the path as needed
+import { JellyBeanService } from '../jelly-bean-service/jelly-bean.service'; 
+import { JellyBean } from '../models/jelly-bean-model'; 
 
 @Component({
   selector: 'menu-bar',
@@ -22,7 +22,7 @@ export class MenuBarComponent {
     public dialog: MatDialog,
     private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer,
-    private jellyBeanService: JellyBeanService // Inject the service
+    private jellyBeanService: JellyBeanService 
   ) {
     this.matIconRegistry.addSvgIcon(
       'byu',
@@ -34,13 +34,13 @@ export class MenuBarComponent {
   openAddFlavorDialog(): void {
     const dialogRef = this.dialog.open(FlavorDialogComponent, {
       width: '300px',
-      data: null, // No data for adding a new jellybean
+      data: null, 
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.jellyBeanService.addJellyBean(result); // Add the new jelly bean
-        this.loadJellyBeans(); // Reload jelly beans after adding a new one
+        this.jellyBeanService.addJellyBean(result); 
+        this.loadJellyBeans(); 
       }
     });
   }
@@ -76,7 +76,7 @@ export class MenuBarComponent {
         color = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
         break;
       default:
-        color = faker.internet.color(); // Fallback to faker's color if something goes wrong
+        color = faker.internet.color();
     }
 
     return color;
@@ -112,7 +112,7 @@ export class MenuBarComponent {
       color: randomColor,
     };
     this.jellyBeanService.addJellyBean(newJellyBean);
-    this.loadJellyBeans(); // Reload jelly beans after adding a new one
+    this.loadJellyBeans(); 
   }
 
   deleteAll(): void {
@@ -123,7 +123,7 @@ export class MenuBarComponent {
     let flavors = JSON.parse(localStorage.getItem('jellybeanFlavors') || '[]');
     flavors.push(flavor);
     localStorage.setItem('jellybeanFlavors', JSON.stringify(flavors));
-    this.loadJellyBeans(); // Reload jelly beans after saving a new one
+    this.loadJellyBeans(); 
   }
 
   private loadJellyBeans(): void {

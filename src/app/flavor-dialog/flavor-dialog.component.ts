@@ -35,8 +35,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
-import { JellyBeanService } from '../jelly-bean-service/jelly-bean.service'; // Import the service
-import { JellyBean } from '../models/jelly-bean-model'; // Import the model
+import { JellyBeanService } from '../jelly-bean-service/jelly-bean.service'; 
+import { JellyBean } from '../models/jelly-bean-model'; 
 import { MatIcon } from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { ColorPickerModule } from 'primeng/colorpicker';
@@ -56,7 +56,6 @@ export class FlavorDialogComponent {
     public dialogRef: MatDialogRef<FlavorDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: JellyBean
   ) {
-    // Initialize the flavor and color with the data passed to the dialog
     this.flavor = data?.flavor || '';
     this.color = data?.color || '';
   }
@@ -67,10 +66,10 @@ export class FlavorDialogComponent {
 
   onSave(): void {
     const editedJellyBean: JellyBean = {
-      id: this.data?.id || Date.now(), // Use the existing ID
+      id: this.data?.id || Date.now(), 
       flavor: this.flavor,
       color: this.color,
     };
-    this.dialogRef.close(editedJellyBean); // Close the dialog and pass the edited jellybean
+    this.dialogRef.close(editedJellyBean);
   }
 }

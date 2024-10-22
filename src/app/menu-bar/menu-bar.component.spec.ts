@@ -13,12 +13,11 @@ export class MenuBarComponent {
   openAddFlavorDialog(): void {
     const dialogRef = this.dialog.open(FlavorDialogComponent, {
       width: '300px',
-      data: null, // No data for adding a new jellybean
+      data: null, 
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        // Handle the result from dialog when a new flavor is added
       }
     });
   }

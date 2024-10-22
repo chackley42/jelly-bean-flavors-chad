@@ -1,7 +1,3 @@
-/* You can add global styles to this file, and also import other style files */
-
-/* html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
 
 
 
@@ -41,11 +37,10 @@ div[mat-dialog-actions] > button {
 
 .jelly-bean-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjust the minmax value as needed */
-    gap: 20px; /* Space between grid items */
-    padding: 20px; /* Padding around the grid */
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); 
+    gap: 20px; 
+    padding: 20px; 
     width: 100%;
-    /* display: flex; */
     box-sizing: border-box;
   }
 
@@ -54,11 +49,11 @@ div[mat-dialog-actions] > button {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    border: 0.5px solid #ccc; /* Optional: Add a border around each item */
-    padding: 5px; /* Padding inside each item */
-    border-radius: 8px; /* Optional: Add rounded corners */
-    background-color: #e8e7fa; /* Optional: Add a background color */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a shadow beneath the item */
+    border: 0.5px solid #ccc; 
+    padding: 5px; 
+    border-radius: 8px; 
+    background-color: #e8e7fa; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
   }
 
   h3[mat-dialog-title] {

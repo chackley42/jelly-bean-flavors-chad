@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { JellyBean } from '../models/jelly-bean-model'; // Adjust path as needed
+import { JellyBean } from '../models/jelly-bean-model'; 
 import { CommonModule } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
@@ -10,10 +10,10 @@ import { FlavorDialogComponent } from '../flavor-dialog/flavor-dialog.component'
   selector: 'app-jelly-bean',
   templateUrl: './jelly-bean.component.html',
   standalone: true,
-  imports: [CommonModule, MatIcon, MatButtonModule], // Include any other necessary modules here
+  imports: [CommonModule, MatIcon, MatButtonModule], 
 })
 export class JellyBeanComponent {
-  @Input() jellyBean!: JellyBean; // Expecting JellyBean input
+  @Input() jellyBean!: JellyBean; 
   @Output() delete = new EventEmitter<void>();
   @Output() edit = new EventEmitter<JellyBean>();
 
@@ -26,12 +26,12 @@ export class JellyBeanComponent {
   onEdit() {
     const dialogRef = this.dialog.open(FlavorDialogComponent, {
       width: '300px',
-      data: { ...this.jellyBean }, // Pass a copy of the jellyBean to the dialog
+      data: { ...this.jellyBean }, 
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.edit.emit(result); // Emit the edited jelly bean
+        this.edit.emit(result); 
       }
     });
   }
